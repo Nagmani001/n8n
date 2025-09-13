@@ -2,32 +2,32 @@ import { MoreVertical } from "lucide-react";
 
 export default function Workflow() {
   return (
-    <div className="bg-white text-zinc-900 border border-zinc-200 rounded-md p-4 flex items-center justify-between shadow-sm">
-      <div>
-        <h3 className="cursor-pointer hover:underline font-medium text-sm">My workflow</h3>
-        <p className="text-xs text-zinc-500">
-          Last updated 2 days ago | Created 10 September
+    <div className="bg-white text-gray-900 border border-gray-200 rounded-lg p-6 flex items-center justify-between shadow-sm hover:shadow-md transition-shadow">
+      <div className="space-y-1">
+        <h3 className="cursor-pointer hover:text-blue-600 font-semibold text-base transition-colors">My workflow</h3>
+        <p className="text-sm text-gray-500">
+          Last updated 2 days ago • Created 10 September
         </p>
       </div>
 
-      <div className="flex items-center space-x-3">
-        <span className="bg-zinc-100 text-zinc-700 text-xs px-2 py-1 rounded-md border border-zinc-200">
+      <div className="flex items-center space-x-4">
+        <span className="bg-gray-100 text-gray-700 text-sm px-3 py-1 rounded-full border border-gray-200 font-medium">
           Personal
         </span>
-        <span className="text-zinc-700 text-xs px-2 py-1 rounded-md ">
+        <span className="text-green-600 text-sm px-3 py-1 rounded-full bg-green-50 font-medium">
           Active
         </span>
 
         <label className="relative inline-flex items-center cursor-pointer">
           <input type="checkbox" className="sr-only peer" />
-          <div className="w-10 h-5 bg-zinc-300 rounded-full peer peer-checked:bg-green-500 
+          <div className="w-11 h-6 bg-gray-300 rounded-full peer peer-checked:bg-green-500 
                           after:content-[''] after:absolute after:top-[2px] after:left-[2px] 
-                          after:bg-white after:rounded-full after:h-4 after:w-4 
+                          after:bg-white after:rounded-full after:h-5 after:w-5 
                           after:transition-all peer-checked:after:translate-x-5 shadow-sm" />
         </label>
 
-        <button className="p-1 hover:bg-zinc-100 rounded">
-          <MoreVertical className="w-4 h-4 text-zinc-500" />
+        <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+          <MoreVertical className="w-4 h-4 text-gray-500" />
         </button>
       </div>
     </div>

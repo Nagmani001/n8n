@@ -10,34 +10,35 @@ export default function Sections() {
   const [currentSection, setCurrentSection] = useAtom(currentSectionAtom);
 
   return <div className="flex flex-col gap-y-6 w-full">
-    <div className="p-4 rounded-xl bg-slate-100 shadow-md  flex justify-between mx-auto w-5xl ">
-      <div className="flex flex-col gap-y-3">
-        <h1 className="text-xl font-semibold ">
+    <div className="p-6 rounded-xl bg-white shadow-sm border border-gray-200 flex justify-between items-center">
+      <div className="flex flex-col gap-y-2">
+        <h1 className="text-xl font-semibold text-gray-900">
           Personal
         </h1>
-        <p className="text-slate-600">
+        <p className="text-gray-600 text-sm">
           Workflows and credentials owned by you
         </p>
       </div>
       <div className="flex items-center">
         <Button onClick={() => {
           navigate("/arena");
-        }} className="bg-red-500 hover:bg-red-600 text-white flex items-center">
+        }} className="bg-blue-600 hover:bg-blue-700 text-white flex items-center px-4 py-2 rounded-lg font-medium transition-colors shadow-sm">
           Create Workflow
-          <ChevronDown className="ml-1 h-4 w-4" />
+          <ChevronDown className="ml-2 h-4 w-4" />
         </Button>
       </div>
     </div>
 
-    <div className="flex gap-x-3">
+    <div className="flex gap-x-6 border-b border-gray-200">
       <button
         onClick={() => {
           setCurrentSection("workflows");
           navigate("/workflows/workflows");
         }}
-        className={clsx("cursor-pointer font-semibold hover:text-[#ff6f5c]",
+        className={clsx("cursor-pointer font-medium pb-3 px-1 border-b-2 transition-colors",
           {
-            "text-[#ff6f5c] underline decoration-[#ff6f5c] underline-offset-4": currentSection == "workflows"
+            "text-blue-600 border-blue-600": currentSection == "workflows",
+            "text-gray-500 border-transparent hover:text-gray-700 hover:border-gray-300": currentSection != "workflows"
           }
         )}>Workflows</button>
       <button
@@ -45,9 +46,10 @@ export default function Sections() {
           setCurrentSection("credentials");
           navigate("/workflows/credentials");
         }}
-        className={clsx("cursor-pointer font-semibold hover:text-[#ff6f5c] underline-offset-4",
+        className={clsx("cursor-pointer font-medium pb-3 px-1 border-b-2 transition-colors",
           {
-            "text-[#ff6f5c] underline decoration-[#ff6f5c]": currentSection == "credentials"
+            "text-blue-600 border-blue-600": currentSection == "credentials",
+            "text-gray-500 border-transparent hover:text-gray-700 hover:border-gray-300": currentSection != "credentials"
           }
         )}
       >Credentials</button>
@@ -56,15 +58,14 @@ export default function Sections() {
           setCurrentSection("executions");
           navigate("/workflows/executions");
         }}
-
-        className={clsx("cursor-pointer font-semibold hover:text-[#ff6f5c]",
+        className={clsx("cursor-pointer font-medium pb-3 px-1 border-b-2 transition-colors",
           {
-            "text-[#ff6f5c] underline decoration-[#ff6f5c] underline-offset-4": currentSection == "executions"
+            "text-blue-600 border-blue-600": currentSection == "executions",
+            "text-gray-500 border-transparent hover:text-gray-700 hover:border-gray-300": currentSection != "executions"
           }
         )}
       >Executions</button>
     </div>
-
 
   </div >
 

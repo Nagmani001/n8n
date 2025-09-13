@@ -8,38 +8,37 @@ import {
 
 export default function GmailAccountCard() {
   return (
-    <div className="bg-white border border-zinc-200 rounded-md p-4 flex items-center justify-between shadow-sm">
-      <div className="flex items-center space-x-3">
-        <img
-          src="/gmail.png"
-          alt="Gmail"
-          width={28}
-          height={28}
-        />
+    <div className="bg-white border border-gray-200 rounded-lg p-6 flex items-center justify-between shadow-sm hover:shadow-md transition-shadow">
+      <div className="flex items-center space-x-4">
+        <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
+          <div className="w-6 h-6 bg-red-500 rounded text-white text-xs font-bold flex items-center justify-center">
+            G
+          </div>
+        </div>
 
-        <div>
-          <h3 className="font-medium text-sm">Gmail account</h3>
-          <p className="text-xs text-zinc-500">
-            Gmail OAuth2 API | Last updated 2 days ago | Created 10 September
+        <div className="space-y-1">
+          <h3 className="font-semibold text-base text-gray-900">Gmail account</h3>
+          <p className="text-sm text-gray-500">
+            Gmail OAuth2 API • Last updated 2 days ago • Created 10 September
           </p>
         </div>
       </div>
 
-      <div className="flex items-center space-x-3">
-        <span className="flex items-center gap-1 border border-zinc-200 bg-zinc-100 text-zinc-700 text-xs px-2 py-1 rounded-md">
+      <div className="flex items-center space-x-4">
+        <span className="flex items-center gap-2 border border-gray-200 bg-gray-100 text-gray-700 text-sm px-3 py-1 rounded-full font-medium">
           <User className="h-3 w-3" /> Personal
         </span>
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <button className="p-2 rounded hover:bg-zinc-100">
-              <MoreVertical className="h-4 w-4 text-zinc-500" />
+            <button className="p-2 rounded-lg hover:bg-gray-100 transition-colors">
+              <MoreVertical className="h-4 w-4 text-gray-500" />
             </button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-40">
-            <DropdownMenuItem>Manage</DropdownMenuItem>
-            <DropdownMenuItem>Edit</DropdownMenuItem>
-            <DropdownMenuItem className="text-red-500">Remove</DropdownMenuItem>
+          <DropdownMenuContent className="w-44 bg-white border border-gray-200 shadow-lg rounded-lg">
+            <DropdownMenuItem className="hover:bg-gray-50 cursor-pointer">Manage</DropdownMenuItem>
+            <DropdownMenuItem className="hover:bg-gray-50 cursor-pointer">Edit</DropdownMenuItem>
+            <DropdownMenuItem className="text-red-600 hover:bg-red-50 cursor-pointer">Remove</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>

@@ -35,50 +35,54 @@ export default function Execution() {
   ]
 
   return (
-    <div className="border border-zinc-200 rounded-md overflow-hidden bg-white shadow-sm">
+    <div className="border border-gray-200 rounded-lg overflow-hidden bg-white shadow-sm">
       <Table>
-        <TableHeader className="bg-zinc-50 text-zinc-700">
-          <TableRow>
-            <TableHead className="w-10">
+        <TableHeader className="bg-gray-50 text-gray-700">
+          <TableRow className="border-b border-gray-200">
+            <TableHead className="w-12 pl-6">
               <Checkbox />
             </TableHead>
-            <TableHead>Workflow</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead>Started</TableHead>
-            <TableHead>Run Time</TableHead>
-            <TableHead>Exec. ID</TableHead>
-            <TableHead className="text-right"></TableHead>
+            <TableHead className="font-semibold">Workflow</TableHead>
+            <TableHead className="font-semibold">Status</TableHead>
+            <TableHead className="font-semibold">Started</TableHead>
+            <TableHead className="font-semibold">Run Time</TableHead>
+            <TableHead className="font-semibold">Exec. ID</TableHead>
+            <TableHead className="text-right pr-6"></TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {executions.map((exec) => (
             <TableRow
               key={exec.execId}
-              className="hover:bg-zinc-100 transition-colors"
+              className="hover:bg-gray-50 transition-colors border-b border-gray-100"
             >
-              <TableCell>
+              <TableCell className="pl-6">
                 <Checkbox />
               </TableCell>
-              <TableCell className="font-medium text-zinc-900">
+              <TableCell className="font-medium text-gray-900">
                 {exec.workflow}
               </TableCell>
-              <TableCell className="flex items-center gap-1 text-green-600">
+              <TableCell className="flex items-center gap-2 text-green-600">
                 <CheckCircle2 className="h-4 w-4" />
-                {exec.status}
+                <span className="font-medium">{exec.status}</span>
               </TableCell>
-              <TableCell className="text-zinc-700">{exec.started}</TableCell>
-              <TableCell className="text-zinc-700">{exec.runTime}</TableCell>
-              <TableCell className="text-zinc-700">{exec.execId}</TableCell>
-              <TableCell className="flex items-center justify-end gap-2">
-                <FlaskConical className="h-4 w-4 text-zinc-500" />
-                <MoreVertical className="h-4 w-4 text-zinc-500 cursor-pointer" />
+              <TableCell className="text-gray-700">{exec.started}</TableCell>
+              <TableCell className="text-gray-700 font-mono text-sm">{exec.runTime}</TableCell>
+              <TableCell className="text-gray-700 font-mono text-sm">{exec.execId}</TableCell>
+              <TableCell className="flex items-center justify-end gap-3 pr-6">
+                <button className="p-1 hover:bg-gray-100 rounded transition-colors">
+                  <FlaskConical className="h-4 w-4 text-gray-500" />
+                </button>
+                <button className="p-1 hover:bg-gray-100 rounded transition-colors">
+                  <MoreVertical className="h-4 w-4 text-gray-500" />
+                </button>
               </TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
 
-      <div className="text-center py-2 text-sm text-zinc-500 border-t border-zinc-200">
+      <div className="text-center py-4 text-sm text-gray-500 border-t border-gray-200 bg-gray-50">
         No more executions to fetch
       </div>
     </div>
