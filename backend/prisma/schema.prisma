@@ -1,0 +1,107 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String        @id @default(uuid())
+  name        String
+  email       String
+  password    String
+  workflows   Workflow[]
+  credentials Credentials[]
+}
+
+model Workflow {
+  id           String   @id @default(uuid())
+  title        String
+  createdAt    DateTime
+  updatedAt    DateTime
+  activeStatus Boolean
+  userId       String
+  user         User     @relation(fields: [userId], references: [id])
+  trigger      Trigger?
+  actions      Action[]
+}
+
+model Trigger {
+  id         String      @id @default(uuid())
+  name       String
+  workflowId String      @unique
+  Workflow   Workflow    @relation(fields: [workflowId], references: [id])
+  type       TriggerType
+}
+
+model Action {
+  id         String     @id @default(uuid())
+  name       String
+  index      Int        @default(autoincrement())
+  workflowId String
+  workflow   Workflow   @relation(fields: [workflowId], references: [id])
+  type       ActinoType
+}
+
+model WorkflowRuns {
+  id         String @id @default(uuid())
+  workflowId String
+}
+
+model WorkflowRunsOutbox {
+  id         String @id @default(uuid())
+  workflowId String
+}
+
+model AvailableTriggers {
+  id       String @id @default(uuid())
+  name     String
+  imageUrl String
+}
+
+model AvailableActions {
+  id       String @id @default(uuid())
+  name     String
+  imageUrl String
+}
+
+model Credentials {
+  id        String          @id @default(uuid())
+  createdAt DateTime
+  updatedAt DateTime
+  User      User            @relation(fields: [userId], references: [id])
+  userId    String
+  key       String
+  value     String
+  type      CredentialsType
+}
+
+model AvailableCredentials {
+  id          String  @id @default(uuid())
+  imageUrl    String
+  title       String
+  description String?
+}
+
+enum TriggerType {
+  WEBHOOK
+  MANUAL
+}
+
+enum ActinoType {
+  EMAIL
+  TELEGRAM
+}
+
+enum CredentialsType {
+  EMAIL
+  TELEGRAM
+}
