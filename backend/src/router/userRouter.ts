@@ -69,6 +69,7 @@ userRouter.post("/signin", async (req: Request, res: Response) => {
     name: checkUser?.name
   });
 });
+
 userRouter.post("/verify", authorize, async (req, res) => {
   const userId = req.userId;
   if (!userId) {

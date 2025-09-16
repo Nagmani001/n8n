@@ -23,23 +23,23 @@ model User {
 }
 
 model Workflow {
-  id           String   @id @default(uuid())
+  id           String    @id @default(uuid())
   title        String
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @default(now())
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime?
   activeStatus Boolean
   userId       String
-  user         User     @relation(fields: [userId], references: [id])
+  user         User      @relation(fields: [userId], references: [id])
   trigger      Trigger?
   actions      Action[]
 }
 
 model Trigger {
-  id         String       @id @default(uuid())
-  name       String?
-  workflowId String?      @unique
-  Workflow   Workflow?    @relation(fields: [workflowId], references: [id])
-  type       TriggerType?
+  id         String      @id @default(uuid())
+  name       String
+  workflowId String      @unique
+  Workflow   Workflow    @relation(fields: [workflowId], references: [id])
+  type       TriggerType
 }
 
 model Action {

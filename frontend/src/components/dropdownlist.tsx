@@ -8,11 +8,13 @@ import {
 import { userAtom } from "@/store/atom";
 import { useSetAtom } from "jotai";
 import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom";
 
 export default function DropdownUser({ user }: { user: string }) {
   const [current, setCurrent] = useState("");
   const setUser = useSetAtom(userAtom);
 
+  const navigate = useNavigate();
   useEffect(() => {
     if (current == "logout") {
       localStorage.removeItem("token");
@@ -28,7 +30,10 @@ export default function DropdownUser({ user }: { user: string }) {
     </DropdownMenuTrigger>
     <DropdownMenuContent className="w-48 mr-2 mt-2 bg-white border border-gray-200 shadow-lg rounded-lg">
       <DropdownMenuRadioGroup value={current} onValueChange={setCurrent}>
-        <DropdownMenuRadioItem value="logout" className="cursor-pointer hover:bg-gray-50 px-3 py-2 text-sm text-gray-700 hover:text-gray-900 transition-colors">
+        <DropdownMenuRadioItem onClick={() => {
+          localStorage.removeItem("token");
+          navigate("/");
+        }} value="logout" className="cursor-pointer hover:bg-gray-50 px-3 py-2 text-sm text-gray-700 hover:text-gray-900 transition-colors">
           Logout
         </DropdownMenuRadioItem>
       </DropdownMenuRadioGroup>

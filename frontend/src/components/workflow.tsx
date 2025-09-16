@@ -1,6 +1,9 @@
 import { MoreVertical } from "lucide-react";
+import { useState } from "react";
 
 export default function Workflow() {
+  const [value, setValue] = useState(false);
+  console.log(value);
   return (
     <div className="bg-white text-gray-900 border border-gray-200 rounded-lg p-6 flex items-center justify-between shadow-sm hover:shadow-md transition-shadow">
       <div className="space-y-1">
@@ -14,12 +17,24 @@ export default function Workflow() {
         <span className="bg-gray-100 text-gray-700 text-sm px-3 py-1 rounded-full border border-gray-200 font-medium">
           Personal
         </span>
-        <span className="text-green-600 text-sm px-3 py-1 rounded-full bg-green-50 font-medium">
-          Active
-        </span>
+        {value &&
+          <span className="text-green-600 text-sm px-3 py-1 rounded-full bg-green-50 font-medium">
+            Active
+          </span>
+        }
 
         <label className="relative inline-flex items-center cursor-pointer">
-          <input type="checkbox" className="sr-only peer" />
+          {value ?
+
+            <input checked type="checkbox" onClick={(e: any) => {
+              setValue(!value);
+            }} className="sr-only peer" />
+            :
+
+            <input type="checkbox" onClick={(e: any) => {
+              setValue(!value);
+            }} className="sr-only peer" />
+          }
           <div className="w-11 h-6 bg-gray-300 rounded-full peer peer-checked:bg-green-500 
                           after:content-[''] after:absolute after:top-[2px] after:left-[2px] 
                           after:bg-white after:rounded-full after:h-5 after:w-5 

@@ -4,6 +4,8 @@ import { Button } from "./ui/button";
 import { useAtom } from "jotai";
 import { currentSectionAtom } from "@/store/atom";
 import clsx from "clsx";
+import axios from "axios";
+import { BASE_URL } from "@/config/utils";
 
 export default function Sections() {
   const navigate = useNavigate();
@@ -20,8 +22,20 @@ export default function Sections() {
         </p>
       </div>
       <div className="flex items-center">
-        <Button onClick={() => {
-          navigate("/arena");
+        <Button onClick={async () => {
+
+          const token = localStorage.getItem("token");
+          try {
+            const createWorkflow = await axios.post(`${BASE_URL}/api/workflow/workflow`, {}, {
+              headers: {
+                authorization: token
+              }
+            });
+            navigate(`/workflows/${createWorkflow.data.workflowsId}`);
+          } catch (err) {
+            console.log("error");
+          }
+
         }} className="bg-blue-600 hover:bg-blue-700 text-white flex items-center px-4 py-2 rounded-lg font-medium transition-colors shadow-sm">
           Create Workflow
           <ChevronDown className="ml-2 h-4 w-4" />
@@ -33,7 +47,7 @@ export default function Sections() {
       <button
         onClick={() => {
           setCurrentSection("workflows");
-          navigate("/workflows/workflows");
+          navigate("/workflows");
         }}
         className={clsx("cursor-pointer font-medium pb-3 px-1 border-b-2 transition-colors",
           {
@@ -44,7 +58,7 @@ export default function Sections() {
       <button
         onClick={() => {
           setCurrentSection("credentials");
-          navigate("/workflows/credentials");
+          navigate("/credentials");
         }}
         className={clsx("cursor-pointer font-medium pb-3 px-1 border-b-2 transition-colors",
           {
@@ -56,7 +70,7 @@ export default function Sections() {
       <button
         onClick={() => {
           setCurrentSection("executions");
-          navigate("/workflows/executions");
+          navigate("/executions");
         }}
         className={clsx("cursor-pointer font-medium pb-3 px-1 border-b-2 transition-colors",
           {

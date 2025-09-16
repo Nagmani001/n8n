@@ -1,7 +1,13 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ArrowRight, Zap, GitBranch, Clock, Shield } from 'lucide-react';
+import { useVerify } from '@/hooks/useVerify';
 
 export default function Lanidng() {
+  const user = useVerify();
+  const navigate = useNavigate();
+  if (user) {
+    navigate("/workflows")
+  }
   return (
     <div className="min-h-screen bg-gray-50">
 

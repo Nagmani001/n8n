@@ -32,7 +32,7 @@ export default function Signin() {
       });
       localStorage.setItem("token", response.data.token);
       setUser(response.data.name);
-      navigate("/workflows/workflows");
+      navigate("/workflows");
 
     } catch (err) {
       toast.error("Invalid email or password");

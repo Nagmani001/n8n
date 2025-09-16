@@ -18,10 +18,10 @@ export default function App() {
           <Route path="/" element={<Landing />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/signin" element={<Signin />} />
-          <Route path="/workflows/workflows" element={<WorkflowCard />} />
+          <Route path="/workflows" element={<WorkflowCard />} />
           <Route path="/workflows/:id" element={<Arena />} />
-          <Route path="/workflows/credentials" element={<Credentials />} />
-          <Route path="/workflows/executions" element={<Executions />} />
+          <Route path="/credentials" element={<Credentials />} />
+          <Route path="/executions" element={<Executions />} />
         </Routes>
       </div>
     </BrowserRouter>

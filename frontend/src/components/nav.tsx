@@ -1,35 +1,13 @@
 import { Link, useLocation } from 'react-router-dom';
 import { Zap } from 'lucide-react';
-import { useEffect } from 'react';
-import axios from 'axios';
-import { BASE_URL } from '@/config/utils';
 import DropdownUser from './dropdownlist';
-import { useAtom } from 'jotai';
-import { userAtom } from '@/store/atom';
+import { useVerify } from '@/hooks/useVerify';
 
 export default function Nav() {
   const location = useLocation();
   const isActive = (path: string) => location.pathname === path;
-  const [user, setUser] = useAtom(userAtom);
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-
-    const main = async () => {
-      try {
-        const response = await axios.post(`${BASE_URL}/api/user/verify`, {}, {
-          headers: {
-            authorization: token
-          }
-        });
-        setUser(response.data.name);
-      } catch (err) {
-        alert("error");
-      }
-    }
-    main();
-
-  }, []);
+  const user = useVerify();
 
   return (
     <nav className="bg-white/95 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-50">
