@@ -16,6 +16,7 @@ export const credentialsSchema = z.object({
   key: z.string(),
   value: z.string(),
   type: z.enum(["EMAIL", "TELEGRAM"]),
+  imageUrl: z.string(),
 });
 
 export const updateWrokflowSchema = z.object({

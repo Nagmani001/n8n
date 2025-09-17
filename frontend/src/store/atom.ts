@@ -7,16 +7,17 @@ interface TriggerAction {
   description: string,
   imageUrl: string
 }
+export const availableTriggersAtom = atom<TriggerAction[]>();
+export const availableActionsAtom = atom<TriggerAction[]>();
 
 export const currentSectionAtom = atom("workflows");
 export const userAtom = atom("");
 
-export const availableTriggersAtom = atom<TriggerAction[]>();
-export const availableActionsAtom = atom<TriggerAction[]>();
 
 
 // this is your main trigger and action state for a workflow 
 // to be addted once the user clicks on save 
+// not actually , on save i should make http request and persist it in db 
 export const tirggerAtom = atom();
 export const actionsAtom = atom();
 

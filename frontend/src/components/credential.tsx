@@ -5,21 +5,26 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { findAppeopriateName } from "@/lib/utils"
 
-export default function GmailAccountCard() {
+export default function GmailAccountCard({ title, imageUrl, updatedAt, createdAt }: {
+  title: string,
+  updatedAt: string,
+  createdAt: string,
+  imageUrl: string,
+}) {
+  const name = findAppeopriateName(title);
   return (
     <div className="bg-white border border-gray-200 rounded-lg p-6 flex items-center justify-between shadow-sm hover:shadow-md transition-shadow">
       <div className="flex items-center space-x-4">
-        <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
-          <div className="w-6 h-6 bg-red-500 rounded text-white text-xs font-bold flex items-center justify-center">
-            G
-          </div>
-        </div>
+        <img
+          className="h-8 w-10"
+          src={imageUrl} />
 
         <div className="space-y-1">
-          <h3 className="font-semibold text-base text-gray-900">Gmail account</h3>
+          <h3 className="font-semibold text-base text-gray-900">{name}</h3>
           <p className="text-sm text-gray-500">
-            Gmail OAuth2 API • Last updated 2 days ago • Created 10 September
+            Gmail OAuth2 API • Last updated {updatedAt} • Created {createdAt}
           </p>
         </div>
       </div>

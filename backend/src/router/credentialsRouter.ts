@@ -40,6 +40,7 @@ credentialsRouter.post("/add", authorize, async (req: Request, res: Response) =>
       key: parsedData.data.key,
       value: parsedData.data.value,
       type: parsedData.data.type,
+      imageUrl: parsedData.data.imageUrl,
       userId,
     }
   });

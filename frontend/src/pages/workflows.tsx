@@ -4,8 +4,9 @@ import { BASE_URL } from "@/config/utils";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
+
 export default function WorkflowCard() {
-  const [workflows, setWorkflows] = useState([]);
+  const [workflows, setWorkflows] = useState<any>([]);
   useEffect(() => {
     const main = async () => {
       try {
@@ -15,14 +16,10 @@ export default function WorkflowCard() {
           }
         });
         setWorkflows(response.data.workflows);
-        console.log("log", response.data.workflows);
-        console.log("state", workflows);
       } catch (err) {
         alert("error error");
         console.log("err");
-
       }
-
     }
     main();
   }, []);
@@ -33,8 +30,17 @@ export default function WorkflowCard() {
       <div className="space-y-6">
         <Sections />
       </div>
-      <div className="mt-8">
-        <Workflow />
+      <div className="flex flex-col gap-y-3 mt-8">
+        {workflows.map((x: any) => {
+          return <Workflow
+            key={x.id}
+            id={x.id}
+            title={x.title}
+            createdAt={x.createdAt}
+            updatedAt={x.updatedAt}
+            isActive={x.activeStatus}
+          />
+        })}
       </div>
     </div>
   </div>

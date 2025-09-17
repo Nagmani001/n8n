@@ -1,15 +1,25 @@
 import { MoreVertical } from "lucide-react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-export default function Workflow() {
-  const [value, setValue] = useState(false);
-  console.log(value);
+export default function Workflow({ id, title, updatedAt, createdAt, isActive }: {
+  id: string,
+  title: string,
+  updatedAt: string,
+  createdAt: string,
+  isActive: boolean
+}) {
+
+  const [value, setValue] = useState(isActive);
+  const navigate = useNavigate();
   return (
     <div className="bg-white text-gray-900 border border-gray-200 rounded-lg p-6 flex items-center justify-between shadow-sm hover:shadow-md transition-shadow">
       <div className="space-y-1">
-        <h3 className="cursor-pointer hover:text-blue-600 font-semibold text-base transition-colors">My workflow</h3>
+        <h3 onClick={() => {
+          navigate("/workflows/" + id);
+        }} className="cursor-pointer hover:text-blue-600 font-semibold text-base transition-colors">{title}</h3>
         <p className="text-sm text-gray-500">
-          Last updated 2 days ago • Created 10 September
+          Last updated {updatedAt} • Created {createdAt}
         </p>
       </div>
 
